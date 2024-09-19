@@ -18,7 +18,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,7 +49,9 @@ class SecondActivity : ComponentActivity() {
 
 @Composable
 fun SecondPage(modifier: Modifier = Modifier){
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    val scrollState = rememberScrollState()
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.verticalScroll(scrollState)) {
         Spacer(modifier = Modifier.height(50.dp))
 
         Top()
@@ -66,6 +70,7 @@ fun SecondPage(modifier: Modifier = Modifier){
 
         ToThirdPage()
 
+        Spacer(modifier = Modifier.height(60.dp))
     }
 }
 
@@ -149,6 +154,7 @@ fun OrangeWithoutBackground(){
 
 @Composable
 fun SecondFinalText(){
+
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Lacus purus turpis",
