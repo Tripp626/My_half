@@ -101,7 +101,7 @@ fun TopBar(modifier: Modifier = Modifier){
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        FinalText()
+        FinalText(text = "Risus tristique commodo sed sit nulla quisque interdum mi varius. Velit euismod nam amet lectus nunc rhoncus quam iaculis posuere. Cras viverra viverra fusce diam amet. ")
 
         ToSecondPage()
 
@@ -202,8 +202,8 @@ fun DescriptionAndIcons(){
 }
 
 @Composable
-fun FinalText(){
-    Text(text = "Risus tristique commodo sed sit nulla quisque interdum mi varius. Velit euismod nam amet lectus nunc rhoncus quam iaculis posuere. Cras viverra viverra fusce diam amet. ",
+fun FinalText(text: String){
+    Text(text = text,
         lineHeight = 30.sp,
         fontWeight = FontWeight.Bold,
         fontSize = 25.sp,

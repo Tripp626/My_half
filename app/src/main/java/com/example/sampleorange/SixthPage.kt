@@ -6,16 +6,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,82 +24,84 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sampleorange.ui.theme.SampleOrangeTheme
 
-class FifthActivity : ComponentActivity() {
+class SixthPage : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge() // This will work now
         setContent {
             SampleOrangeTheme {
-                FifthPage()
+                SixthPageDisplay()
             }
         }
     }
 }
 
 @Composable
-fun FifthPage(){
-    val scrollState = rememberScrollState()
+fun SixthPageDisplay(modifier: Modifier = Modifier) {
+    Column( horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier
+        .verticalScroll(rememberScrollState())
+        .statusBarsPadding()
+        .fillMaxWidth()
+    ) {
+        Spacer(modifier = Modifier.height(20.dp))
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth().verticalScroll(scrollState)) {
-        Spacer(modifier = Modifier.height(60.dp))
+        OrangeWithoutBackground(imageId = R.drawable.orange_with_purple_background)
+        
+        Spacer(modifier = Modifier.height(20.dp))
 
-        SearchBar()
+        Text(
+            text = "Nisl velit eget rhoncus lacus purus turpis. In at eu nunc facilisis eu et.",
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 35.sp,
+            modifier = Modifier.width(300.dp),
+            maxLines = 1,
+            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+            lineHeight = 40.sp
+        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Box(modifier = Modifier
-            .width(350.dp)
-            .height(306.dp)
-            .clip(shape = RoundedCornerShape(50.dp))
-        ){
-            Image(
-                painter = painterResource(id = R.drawable.orange_with_background),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                //contentScale = ContentScale.Crop
-            )
-        }
+        FinalText(text = "Nisl velit eget rhoncus elementum sed tincidunt risus viverra. Risus tristique commodo sed sit nulla quisque interdum mi varius. Velit euismod nam amet lectus nunc rhoncus quam iaculis posuere. Cras viverra viverra fusce diam amet. ")
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        FourthFinalText()
+        Buy(350, 60)
 
-        BulletPointsList()
+        Spacer(modifier = Modifier.height(20.dp))
 
-        Update()
+        ToSeventhPage()
 
-        ToSixthPage()
-
-        Spacer(modifier = Modifier.height(60.dp))
+        Spacer(modifier = Modifier.height(50.dp))
     }
 }
 
+
 @Composable
-fun Update(){
+fun Buy(width: Int, height: Int){
     Box(
         modifier = Modifier
-            .width(350.dp)
-            .height(60.dp)
+            .width(width.dp)
+            .height(height.dp)
             .clickable { }
             .background(
-                color = colorResource(id = R.color.teal_700),
+                color = colorResource(id = R.color.purple_500),
                 shape = RoundedCornerShape(10.dp)
             ),
         contentAlignment = Alignment.Center
 
     ){
         Text(
-            text = "Update",
+            text = "Buy",
+            color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 35.sp,
             modifier = Modifier.padding(horizontal = 30.dp)
@@ -109,13 +110,21 @@ fun Update(){
 }
 
 @Composable
-fun ToSixthPage(){
+fun ToSeventhPage(){
     val context = LocalContext.current
 
     Button(onClick = {
-        val intent = Intent(context, SixthPage::class.java)
+        val intent = Intent(context, SeventhPage::class.java)
         context.startActivity(intent)
     }) {
         Text(text = "Next Page")
+    }
+}
+
+@Preview
+@Composable
+fun SixthPagePreview() {
+    SampleOrangeTheme {
+        SixthPageDisplay()
     }
 }

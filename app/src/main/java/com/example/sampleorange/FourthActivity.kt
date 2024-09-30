@@ -126,12 +126,17 @@ fun SearchBar(){
 }
 
 @Composable
-fun FourthFinalText() {
+fun FourthFinalText(header: String = "Cras viverra",
+                    headerSize: Int = 35,
+                    body: String = "Cras viverra viverra fusce diam amet. Velit euismod nam amet lectus nunc rhoncus quam iaculis posuere. ",
+                    bodySize: Int = 30,
+                    lineHeight:Int = 30
+) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "Cras viverra",
+            text = header,
             fontWeight = FontWeight.Bold,
-            fontSize = 35.sp,
+            fontSize = headerSize.sp,
             modifier = Modifier.padding(horizontal = 30.dp)
         )
 
@@ -139,10 +144,10 @@ fun FourthFinalText() {
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "Cras viverra viverra fusce diam amet. Velit euismod nam amet lectus nunc rhoncus quam iaculis posuere. ",
-            lineHeight = 30.sp,
+            text = body,
+            lineHeight = lineHeight.sp,
             fontWeight = FontWeight.Bold,
-            fontSize = 25.sp,
+            fontSize = bodySize.sp,
             modifier = Modifier.padding(horizontal = 30.dp)
 
         )

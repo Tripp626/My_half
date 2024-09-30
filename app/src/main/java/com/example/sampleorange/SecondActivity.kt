@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -62,7 +63,7 @@ fun SecondPage(modifier: Modifier = Modifier){
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        OrangeWithoutBackground()
+        OrangeWithoutBackground(R.drawable.orange_without_background)
         
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -137,14 +138,14 @@ fun OrangeBar(){
 }
 
 @Composable
-fun OrangeWithoutBackground(){
+fun OrangeWithoutBackground(imageId: Int, width: Int = 350, height: Int = 306){
     Box(modifier = Modifier
-        .width(350.dp)
-        .height(306.dp)
+        .width(width.dp)
+        .height(height.dp)
         .clip(shape = RoundedCornerShape(50.dp))
     ){
         Image(
-            painter = painterResource(id = R.drawable.orange_without_background),
+            painter = painterResource(id = imageId),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             //contentScale = ContentScale.Crop
